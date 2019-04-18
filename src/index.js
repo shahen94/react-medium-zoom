@@ -1,22 +1,41 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import mediumZoom from 'medium-zoom';
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
+class ReactMediumZoom extends Component {
   static propTypes = {
-    text: PropTypes.string
+    text: PropTypes.string,
+    onOpen: PropTypes.func,
+    onClosed: PropTypes.func
   }
 
+  imgRef = React.createRef();
+  zoom = null;
+
+  componentDidMount() {
+    this.zoom = mediumZoom(this.imgRef.current)
+    this.zoom.on('open', this.props.onOpen)
+    this.zoom.on('closed', this.props.onClosed)
+  }
+
+  componentWillUnmount() {
+    this.zoom.off('open', this.props.onOpen)
+    this.zoom.off('closed', this.props.onClosed)
+  }
+
+  open = () =>
+    this.zoom.open()
+
   render() {
-    const {
-      text
-    } = this.props
+    const { ...imgProps } = this.props
 
     return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
+      <img
+        ref={this.imgRef}
+        {...imgProps}
+      />
     )
   }
 }
+
+export default ReactMediumZoom

@@ -15,12 +15,17 @@ npm install --save react-medium-zoom
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-medium-zoom'
+import ReactMediumImg from 'react-medium-zoom'
 
-class Example extends Component {
+class App extends Component {
   render () {
     return (
-      <MyComponent />
+      <ReactMediumImg
+        src={'image'}
+        onOpen={() => console.log('Image Open')}
+        onClosed={() => console.log('Image closed')}
+        {...allImageProps}
+      />
     )
   }
 }

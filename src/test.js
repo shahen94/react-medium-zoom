@@ -1,7 +1,7 @@
-import ExampleComponent from './'
+import ReactMediumZoom from './'
 
-describe('ExampleComponent', () => {
+describe('ReactMediumZoom', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(ReactMediumZoom).toMatchSnapshot()
   })
 })
