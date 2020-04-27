@@ -18,11 +18,6 @@ class ReactMediumZoom extends Component {
     this.zoom.on('closed', this.props.onClosed)
   }
 
-  componentWillUnmount() {
-    this.zoom.off('open', this.props.onOpen)
-    this.zoom.off('closed', this.props.onClosed)
-  }
-
   open = () =>
     this.zoom.open()
 
